@@ -1,1 +1,1 @@
-web: vendor/bin/heroku-php-nginx back/public/
+web: php -S 0.0.0.0:8000 -t back/public/
