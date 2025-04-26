@@ -5,7 +5,6 @@ namespace App\Database;
 use Doctrine\DBAL\DriverManager;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\ORMSetup;
-use Dotenv\Dotenv;
 
 class DatabaseConnection
 {
@@ -14,14 +13,14 @@ class DatabaseConnection
     public static function getEntityManager(): EntityManager
     {
         if (self::$entityManager === null) {
-            $dotenv = Dotenv::createImmutable(__DIR__ . '/../../../');
-            $dotenv->load();
 
+            // Configuration for ORM
             $config = ORMSetup::createAttributeMetadataConfiguration(
                 paths: [__DIR__ . '/../Model'],
                 isDevMode: true
             );
 
+            // Check if the MySQL connection URL is set (for Railway or similar platforms)
             if (getenv('MYSQL_URL')) {
                 // Use the connection URL directly if available
                 $connectionParams = [
@@ -39,7 +38,7 @@ class DatabaseConnection
                     'password' => getenv('MYSQLPASSWORD') ?: getenv('MYSQL_ROOT_PASSWORD'),
                 ];
             } else {
-                // Fall back to local .env variables
+                // Fallback to local environment (this won't be used in Railway, but for local testing)
                 $connectionParams = [
                     'driver' => 'pdo_mysql',
                     'host' => $_ENV['DB_HOST'] ?? 'localhost',
@@ -50,6 +49,7 @@ class DatabaseConnection
                 ];
             }
 
+            // Create the database connection
             $connection = DriverManager::getConnection($connectionParams);
             self::$entityManager = new EntityManager($connection, $config);
         }
