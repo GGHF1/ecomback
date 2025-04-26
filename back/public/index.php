@@ -52,7 +52,9 @@ switch ($routeInfo[0]) {
         $handler = $routeInfo[1];
         $vars = $routeInfo[2];
         try {
-            echo $handler($vars);
+            list($class, $method) = $handler;
+            $instance = new $class();
+            echo $instance->$method($vars);
         } catch (\Exception $e) {
             error_log('GraphQL Error: ' . $e->getMessage() . ' in ' . $e->getFile() . ':' . $e->getLine());
             http_response_code(500);
