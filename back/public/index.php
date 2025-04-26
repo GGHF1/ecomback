@@ -1,21 +1,17 @@
 <?php
-// Enable error reporting
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-// Add CORS headers
-header('Access-Control-Allow-Origin: https://ecomfront-tau.vercel.app');
+header('Access-Control-Allow-Origin: *'); 
 header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type, Authorization');
 
-// Handle preflight OPTIONS request
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     http_response_code(200);
     exit();
 }
 
-// Log errors to a file
 ini_set('log_errors', 1);
 ini_set('error_log', __DIR__ . '/../../php_errors.log');
 
@@ -52,9 +48,7 @@ switch ($routeInfo[0]) {
         $handler = $routeInfo[1];
         $vars = $routeInfo[2];
         try {
-            list($class, $method) = $handler;
-            $instance = new $class();
-            echo $instance->$method($vars);
+            echo $handler($vars);
         } catch (\Exception $e) {
             error_log('GraphQL Error: ' . $e->getMessage() . ' in ' . $e->getFile() . ':' . $e->getLine());
             http_response_code(500);

@@ -20,15 +20,13 @@ class DatabaseConnection
                 isDevMode: true
             );
 
-            // Check if the MySQL connection URL is set (for Railway or similar platforms)
+            // connect to Railway MySQL database
             if (getenv('MYSQL_URL')) {
-                // Use the connection URL directly if available
                 $connectionParams = [
                     'url' => getenv('MYSQL_URL'),
                     'driver' => 'pdo_mysql',
                 ];
             } else if (getenv('MYSQLHOST')) {
-                // Use individual Railway MySQL environment variables
                 $connectionParams = [
                     'driver' => 'pdo_mysql',
                     'host' => getenv('MYSQLHOST'),
@@ -37,18 +35,7 @@ class DatabaseConnection
                     'user' => getenv('MYSQLUSER'),
                     'password' => getenv('MYSQLPASSWORD') ?: getenv('MYSQL_ROOT_PASSWORD'),
                 ];
-            } else {
-                // Fallback to local environment (this won't be used in Railway, but for local testing)
-                $connectionParams = [
-                    'driver' => 'pdo_mysql',
-                    'host' => $_ENV['DB_HOST'] ?? 'localhost',
-                    'port' => $_ENV['DB_PORT'] ?? 3306,
-                    'dbname' => $_ENV['DB_DATABASE'] ?? 'product_catalog',
-                    'user' => $_ENV['DB_USERNAME'] ?? 'root',
-                    'password' => $_ENV['DB_PASSWORD'] ?? '',
-                ];
-            }
-
+            } 
             // Create the database connection
             $connection = DriverManager::getConnection($connectionParams);
             self::$entityManager = new EntityManager($connection, $config);
