@@ -1,0 +1,145 @@
+Raw Input: {"variables":{},"query":"{\n  categories {\n    id\n    name\n    __typename\n  }\n}"}
+Parsed Query: {
+  categories {
+    id
+    name
+    __typename
+  }
+}
+Raw Input: {"operationName":"GetProducts","variables":{},"query":"query GetProducts {\n  products {\n    id\n    name\n    inStock\n    category\n    prices {\n      amount\n      currency {\n        label\n        symbol\n        __typename\n      }\n      __typename\n    }\n    gallery\n    __typename\n  }\n}"}
+Parsed Query: query GetProducts {
+  products {
+    id
+    name
+    inStock
+    category
+    prices {
+      amount
+      currency {
+        label
+        symbol
+        __typename
+      }
+      __typename
+    }
+    gallery
+    __typename
+  }
+}
+Raw Input: {"operationName":"GetProduct","variables":{"id":"apple-imac-2021"},"query":"query GetProduct($id: String!) {\n  product(id: $id) {\n    id\n    name\n    inStock\n    description\n    category\n    brand\n    gallery\n    prices {\n      id\n      amount\n      currency {\n        label\n        symbol\n        __typename\n      }\n      __typename\n    }\n    attributeSets {\n      id\n      name\n      type\n      type_name\n      attributes {\n        id\n        attribute_set_id\n        display_value\n        value\n        item_id\n        type_name\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}"}
+Parsed Query: query GetProduct($id: String!) {
+  product(id: $id) {
+    id
+    name
+    inStock
+    description
+    category
+    brand
+    gallery
+    prices {
+      id
+      amount
+      currency {
+        label
+        symbol
+        __typename
+      }
+      __typename
+    }
+    attributeSets {
+      id
+      name
+      type
+      type_name
+      attributes {
+        id
+        attribute_set_id
+        display_value
+        value
+        item_id
+        type_name
+        __typename
+      }
+      __typename
+    }
+    __typename
+  }
+}
+Raw Input: {"operationName":"GetProduct","variables":{"id":"huarache-x-stussy-le"},"query":"query GetProduct($id: String!) {\n  product(id: $id) {\n    id\n    name\n    inStock\n    description\n    category\n    brand\n    gallery\n    prices {\n      id\n      amount\n      currency {\n        label\n        symbol\n        __typename\n      }\n      __typename\n    }\n    attributeSets {\n      id\n      name\n      type\n      type_name\n      attributes {\n        id\n        attribute_set_id\n        display_value\n        value\n        item_id\n        type_name\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}"}
+Parsed Query: query GetProduct($id: String!) {
+  product(id: $id) {
+    id
+    name
+    inStock
+    description
+    category
+    brand
+    gallery
+    prices {
+      id
+      amount
+      currency {
+        label
+        symbol
+        __typename
+      }
+      __typename
+    }
+    attributeSets {
+      id
+      name
+      type
+      type_name
+      attributes {
+        id
+        attribute_set_id
+        display_value
+        value
+        item_id
+        type_name
+        __typename
+      }
+      __typename
+    }
+    __typename
+  }
+}
+Raw Input: {"operationName":"GetProduct","variables":{"id":"apple-iphone-12-pro"},"query":"query GetProduct($id: String!) {\n  product(id: $id) {\n    id\n    name\n    inStock\n    description\n    category\n    brand\n    gallery\n    prices {\n      id\n      amount\n      currency {\n        label\n        symbol\n        __typename\n      }\n      __typename\n    }\n    attributeSets {\n      id\n      name\n      type\n      type_name\n      attributes {\n        id\n        attribute_set_id\n        display_value\n        value\n        item_id\n        type_name\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}"}
+Parsed Query: query GetProduct($id: String!) {
+  product(id: $id) {
+    id
+    name
+    inStock
+    description
+    category
+    brand
+    gallery
+    prices {
+      id
+      amount
+      currency {
+        label
+        symbol
+        __typename
+      }
+      __typename
+    }
+    attributeSets {
+      id
+      name
+      type
+      type_name
+      attributes {
+        id
+        attribute_set_id
+        display_value
+        value
+        item_id
+        type_name
+        __typename
+      }
+      __typename
+    }
+    __typename
+  }
+}
