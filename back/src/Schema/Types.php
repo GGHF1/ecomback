@@ -6,7 +6,6 @@ use App\Model\Attribute\Attribute;
 use App\Model\Attribute\AttributeSet;
 use App\Model\Category\Category;
 use App\Model\Currency\Currency;
-use App\Model\Order\Order;
 use App\Model\Price\Price;
 use App\Model\Product\Product;
 use App\Schema\Resolvers\AttributeResolver;
@@ -23,7 +22,6 @@ class Types
     private static ?ObjectType $attributeType = null;
     private static ?ObjectType $priceType = null;
     private static ?ObjectType $currencyType = null;
-    private static ?ObjectType $orderType = null;
     private static ?ObjectType $productGalleryType = null;
 
     public static function category(): ObjectType
@@ -111,18 +109,6 @@ class Types
             'fields' => [
                 'label' => Type::nonNull(Type::string()),
                 'symbol' => Type::nonNull(Type::string()),
-            ],
-        ]);
-    }
-
-    public static function order(): ObjectType
-    {
-        return self::$orderType ??= new ObjectType([
-            'name' => 'Order',
-            'fields' => [
-                'id' => Type::nonNull(Type::int()),
-                'products' => Type::listOf(self::product()),
-                'createdAt' => Type::nonNull(Type::string()),
             ],
         ]);
     }
