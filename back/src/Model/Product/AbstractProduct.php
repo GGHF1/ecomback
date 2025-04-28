@@ -5,7 +5,7 @@ namespace App\Model\Product;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use App\Model\Attribute\AbstractAttributeSet; // Add import
+use App\Model\Attribute\AbstractAttributeSet;
 
 #[ORM\MappedSuperclass]
 abstract class AbstractProduct
@@ -36,12 +36,12 @@ abstract class AbstractProduct
     #[ORM\JoinTable(name: 'product_attributes')]
     #[ORM\JoinColumn(name: 'product_id', referencedColumnName: 'id')]
     #[ORM\InverseJoinColumn(name: 'attribute_set_id', referencedColumnName: 'id')]
-    protected $attributeSets; // Add relationship
+    protected $attributeSets;
 
     public function __construct()
     {
         $this->gallery = new ArrayCollection();
-        $this->attributeSets = new ArrayCollection(); // Initialize
+        $this->attributeSets = new ArrayCollection();
     }
 
     public function getId(): string
